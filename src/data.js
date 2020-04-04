@@ -1,9 +1,9 @@
 let data = [];
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 70; i++) {
   const el = {};
-  el["quarter"] = i + 1;
-  el["earnings"] = 10000 + (i + 1) * 200;
+  el["group"] = `Group ${i}`;
+  el["rate"] = 100 - i;
   data.push(el);
 }
 

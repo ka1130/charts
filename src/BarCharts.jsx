@@ -1,27 +1,33 @@
 import React from "react";
 import data from "./data";
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryLabel } from "victory";
-
-const tickValues = Array.from(Array(data.length).keys());
+import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 
 const BarCharts = () => (
   <div className="barCharts">
-    <VictoryChart animate={{ duration: 500 }}>
-      <VictoryAxis dependentAxis />
+    <VictoryChart animate={{ duration: 500 }} height={20 * (data.length - 1)}>
       <VictoryAxis
+        style={{ tickLabels: { fontSize: 7 } }}
+        dependentAxis
+        tickFormat={x => `${x}%`}
+      />
+      <VictoryAxis
+        // tickValues={tickValues}
+        // tickFormat={x => `${x}%`}
         invertAxis
-        tickValues={tickValues}
-        tickFormat={x => `Q${x + 1}`}
         style={{ tickLabels: { fontSize: 3 } }}
       />
       <VictoryBar
         className="victoryBarWrapper"
         horizontal
-        // padding={{ left: 20, right: 60 }}
-        barWidth={2}
+        barWidth={4}
+        style={{
+          data: {
+            fill: "rgb(23, 52, 76)"
+          }
+        }}
         data={data}
-        x="quarter"
-        y="earnings"
+        x="group"
+        y="rate"
       />
     </VictoryChart>
   </div>
