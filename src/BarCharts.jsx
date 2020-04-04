@@ -3,13 +3,13 @@ import data from "./data";
 import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 
 const tickValues = Array.from(Array(data.length).keys());
-const tickFormat = data.map(el => `Q-${el["quarter"]}`);
 
 const BarCharts = () => (
   <div className="barCharts">
     <h2>BarCharts</h2>
     <VictoryChart>
-      <VictoryAxis tickValues={tickValues} tickFormat={tickFormat} />
+      <VictoryAxis dependentAxis />
+      <VictoryAxis tickValues={tickValues} tickFormat={x => `Q-${x}`} />
       <VictoryBar
         className="victoryBarWrapper"
         data={data}
