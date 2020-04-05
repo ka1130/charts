@@ -9,6 +9,7 @@ import {
 } from "victory";
 
 console.log(data);
+const navy = "rgb(23, 52, 76)";
 
 const BarCharts = () => (
   <div className="barCharts">
@@ -32,7 +33,7 @@ const BarCharts = () => (
         barWidth={8}
         style={{
           data: {
-            fill: "rgb(23, 52, 76)"
+            fill: navy
           }
         }}
         labels={d => d.datum.yName}
@@ -45,9 +46,11 @@ const BarCharts = () => (
         // x={() => 150}
         y={d => {
           // console.log(d);
-          return 10;
+          return 80;
         }}
-        style={{ data: { stroke: "blue", strokeWidth: 1 } }}
+        style={{
+          data: { stroke: "blue", strokeWidth: 1, strokeDasharray: "2, 2" }
+        }}
       />
     </VictoryChart>
   </div>
