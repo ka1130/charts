@@ -19,12 +19,13 @@ const BarCharts = () => (
       minDomain={{ y: 0 }}
       maxDomain={{ y: 100 }}
     >
-      <VictoryAxis style={{ tickLabels: { fontSize: 7 } }} />
+      <VictoryAxis style={{ tickLabels: { fontSize: 7 } }} offsetY={46} />
       <VictoryAxis
         dependentAxis
         style={{ tickLabels: { fontSize: 7 } }}
         tickFormat={y => y + "%"}
         tickCount={10}
+        offsetY={46}
       />
 
       <VictoryBar
