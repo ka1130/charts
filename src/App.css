@@ -1,9 +1,11 @@
 .App {
   text-align: center;
+  padding: 20px;
 }
 
 .chartWrapper {
   /* height: 1200px; */
+  width: 1000px;
 }
 
 .barCharts {

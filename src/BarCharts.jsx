@@ -1,6 +1,12 @@
 import React from "react";
 import data from "./data";
-import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryAxis,
+  VictoryLabel,
+  VictoryLine
+} from "victory";
 
 console.log(data);
 
@@ -9,19 +15,15 @@ const BarCharts = () => (
     <VictoryChart
       animate={{ duration: 500 }}
       height={15 * (data.length - 1)}
-      // domain={[0, 10]}
+      minDomain={{ y: 0 }}
+      maxDomain={{ y: 100 }}
     >
+      <VictoryAxis style={{ tickLabels: { fontSize: 7 } }} />
       <VictoryAxis
-        style={{ tickLabels: { fontSize: 7 } }}
-        // invertAxis
-        // axisValue={d => d}
-        // orientation="bottom"
-      />
-      <VictoryAxis
-        // tickValues={tickValues}
         dependentAxis
         style={{ tickLabels: { fontSize: 7 } }}
-        tickFormat={y => y}
+        tickFormat={y => y + "%"}
+        tickCount={10}
       />
 
       <VictoryBar
@@ -35,8 +37,17 @@ const BarCharts = () => (
         }}
         labels={d => d.datum.yName}
         data={data.reverse()}
+        labelComponent={<VictoryLabel style={{ fontSize: 5 }} />}
         x="group"
         y="rate"
+      />
+      <VictoryLine
+        // x={() => 150}
+        y={d => {
+          // console.log(d);
+          return 10;
+        }}
+        style={{ data: { stroke: "blue", strokeWidth: 1 } }}
       />
     </VictoryChart>
   </div>
