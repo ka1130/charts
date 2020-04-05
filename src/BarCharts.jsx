@@ -44,11 +44,10 @@ const BarCharts = () => (
         y="rate"
       />
       <VictoryLine
-        // x={() => 150}
-        y={d => {
-          // console.log(d);
-          return 80;
-        }}
+        labelComponent={
+          <VictoryLabel style={{ fontSize: 8, color: "blue" }} text="80%" />
+        }
+        y={() => 80}
         style={{
           data: { stroke: "blue", strokeWidth: 1, strokeDasharray: "2, 2" }
         }}
