@@ -2,30 +2,39 @@ import React from "react";
 import data from "./data";
 import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 
+console.log(data);
+
 const BarCharts = () => (
   <div className="barCharts">
-    <VictoryChart animate={{ duration: 500 }} height={20 * (data.length - 1)}>
+    <VictoryChart
+      animate={{ duration: 500 }}
+      height={15 * (data.length - 1)}
+      // domain={[0, 10]}
+    >
       <VictoryAxis
         style={{ tickLabels: { fontSize: 7 } }}
-        dependentAxis
-        tickFormat={x => `${x}%`}
+        // invertAxis
+        // axisValue={d => d}
+        // orientation="bottom"
       />
       <VictoryAxis
         // tickValues={tickValues}
-        // tickFormat={x => `${x}%`}
-        invertAxis
-        style={{ tickLabels: { fontSize: 3 } }}
+        dependentAxis
+        style={{ tickLabels: { fontSize: 7 } }}
+        tickFormat={y => y}
       />
+
       <VictoryBar
         className="victoryBarWrapper"
         horizontal
-        barWidth={4}
+        barWidth={8}
         style={{
           data: {
             fill: "rgb(23, 52, 76)"
           }
         }}
-        data={data}
+        labels={d => d.datum.yName}
+        data={data.reverse()}
         x="group"
         y="rate"
       />
