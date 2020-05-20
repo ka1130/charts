@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, createRef } from "react";
 // import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import FormControl from "react-bootstrap/FormControl";
@@ -35,6 +35,8 @@ const CustomMenu = React.forwardRef(
         console.log(e.key);
         setListFocused(true);
       }
+
+      // iff letter, focus back on searchbox
     };
 
     return (
@@ -64,14 +66,16 @@ const CustomMenu = React.forwardRef(
 );
 
 const Nav = () => {
-  const items = ["red", "orange", "yellow", "green", "blue"];
   const [listFocused, setListFocused] = useState(false);
   const [focusedEl, setFocusedEl] = useState(0);
 
-  const textInput = useRef();
+  const items = ["red", "orange", "yellow", "green", "blue"];
+
+  const txt = useRef(null);
 
   if (listFocused) {
-    textInput.current.focus();
+    // setFocusedEl(1);
+    txt.current.focus();
   }
 
   return (
@@ -84,15 +88,17 @@ const Nav = () => {
         listFocused={listFocused}
         setListFocused={setListFocused}
       >
-        {items.map((item, i) => (
-          <Dropdown.Item
-            key={item}
-            className="menuItem"
-            ref={i === focusedEl ? textInput : null}
-          >
-            {item}
-          </Dropdown.Item>
-        ))}
+        {items.map((item, i) => {
+          return (
+            <Dropdown.Item
+              key={item}
+              className="menuItem"
+              ref={i === 0 ? txt : null}
+            >
+              {item}
+            </Dropdown.Item>
+          );
+        })}
       </Dropdown.Menu>
     </Dropdown>
   );
