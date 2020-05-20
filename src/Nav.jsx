@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 // import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import FormControl from "react-bootstrap/FormControl";
@@ -18,8 +18,26 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 ));
 
 const CustomMenu = React.forwardRef(
-  ({ children, className, style, "aria-labelledby": labeledBy }, ref) => {
+  (
+    {
+      children,
+      className,
+      style,
+      "aria-labelledby": labeledBy,
+      listFocused,
+      setListFocused,
+    },
+    ref
+  ) => {
     const [value, setValue] = useState("");
+
+    const onKeyDown = (e) => {
+      console.log(e.key);
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        console.log("down");
+        setListFocused(true);
+      }
+    };
 
     return (
       <div
@@ -27,6 +45,7 @@ const CustomMenu = React.forwardRef(
         className={className}
         aria-labelledby={labeledBy}
         style={style}
+        onKeyDown={onKeyDown}
       >
         <FormControl
           autoFocus
@@ -48,15 +67,38 @@ const CustomMenu = React.forwardRef(
 
 const Nav = () => {
   const items = ["red", "orange", "yellow", "green", "blue"];
+  const [listFocused, setListFocused] = useState(false);
+  const [focusedEl, setFocusedEl] = useState(0);
+
+  const textInput = useRef();
+
+  console.log("list focused: ", listFocused);
+
+  if (listFocused) {
+    // use ref to find element to focus?
+    textInput.current.focus();
+  }
+
   return (
     <Dropdown>
       <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
         Custom toggle
       </Dropdown.Toggle>
 
-      <Dropdown.Menu as={CustomMenu}>
+      <Dropdown.Menu
+        as={CustomMenu}
+        listFocused={listFocused}
+        setListFocused={setListFocused}
+      >
         {items.map((item, i) => (
-          <Dropdown.Item eventKey={i} className="menuItem">
+          <Dropdown.Item
+            key={item}
+            eventKey={i}
+            className="menuItem"
+            onFocus={() => console.log("I am focused")}
+            ref={i === focusedEl ? textInput : null}
+            // onClick={focusTextInput}
+          >
             {item}
           </Dropdown.Item>
         ))}
