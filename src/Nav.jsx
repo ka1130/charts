@@ -24,7 +24,6 @@ const CustomMenu = React.forwardRef(
       className,
       style,
       "aria-labelledby": labeledBy,
-      listFocused,
       setListFocused,
     },
     ref
@@ -32,9 +31,8 @@ const CustomMenu = React.forwardRef(
     const [value, setValue] = useState("");
 
     const onKeyDown = (e) => {
-      console.log(e.key);
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-        console.log("down");
+        console.log(e.key);
         setListFocused(true);
       }
     };
@@ -72,10 +70,7 @@ const Nav = () => {
 
   const textInput = useRef();
 
-  console.log("list focused: ", listFocused);
-
   if (listFocused) {
-    // use ref to find element to focus?
     textInput.current.focus();
   }
 
@@ -84,7 +79,6 @@ const Nav = () => {
       <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
         Custom toggle
       </Dropdown.Toggle>
-
       <Dropdown.Menu
         as={CustomMenu}
         listFocused={listFocused}
@@ -93,11 +87,8 @@ const Nav = () => {
         {items.map((item, i) => (
           <Dropdown.Item
             key={item}
-            eventKey={i}
             className="menuItem"
-            onFocus={() => console.log("I am focused")}
             ref={i === focusedEl ? textInput : null}
-            // onClick={focusTextInput}
           >
             {item}
           </Dropdown.Item>

@@ -1,7 +1,6 @@
 import React from "react";
 // import BarCharts from "./BarCharts";
 import Nav from "./Nav";
-import AltNav from "./AltNav";
 import "./App.css";
 
 function App() {
@@ -11,9 +10,6 @@ function App() {
       {/* <div className="chartWrapper">
         <BarCharts />
       </div> */}
-      <div>
-        <AltNav />
-      </div>
     </div>
   );
 }
