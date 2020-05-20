@@ -1,4 +1,4 @@
-import React, { useState, useRef, createRef } from "react";
+import React, { useState, useRef } from "react";
 // import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import FormControl from "react-bootstrap/FormControl";
@@ -18,16 +18,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 ));
 
 const CustomMenu = React.forwardRef(
-  (
-    {
-      children,
-      className,
-      style,
-      "aria-labelledby": labeledBy,
-      setListFocused,
-    },
-    ref
-  ) => {
+  ({ children, className, style, setListFocused }, ref) => {
     const [value, setValue] = useState("");
 
     const onKeyDown = (e) => {
@@ -40,13 +31,7 @@ const CustomMenu = React.forwardRef(
     };
 
     return (
-      <div
-        ref={ref}
-        className={className}
-        aria-labelledby={labeledBy}
-        style={style}
-        onKeyDown={onKeyDown}
-      >
+      <div ref={ref} className={className} style={style} onKeyDown={onKeyDown}>
         <FormControl
           autoFocus
           className="mx-3 my-2 w-auto"
@@ -67,15 +52,13 @@ const CustomMenu = React.forwardRef(
 
 const Nav = () => {
   const [listFocused, setListFocused] = useState(false);
-  const [focusedEl, setFocusedEl] = useState(0);
+  const txt = useRef(null);
 
   const items = ["red", "orange", "yellow", "green", "blue"];
 
-  const txt = useRef(null);
-
   if (listFocused) {
-    // setFocusedEl(1);
     txt.current.focus();
+    console.log("foo");
   }
 
   return (
