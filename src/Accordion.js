@@ -42,19 +42,6 @@ const Accordion = () => {
   const accordionData = initialData.map((el) => ({ ...el, open: false }));
   const [data, setData] = useState(accordionData);
 
-  // const toggle = (index) => {
-  //   setData(
-  //     data.map((el, i) => {
-  //       if (i === index) {
-  //         el.open = !el.open;
-  //       } else {
-  //         el.open = false;
-  //       }
-
-  //       return el;
-  //     })
-  //   );
-  // };
   const toggle = (index) => {
     console.log("toogle: ", index);
     const toggledData = data.map((elem, ind) => ({
