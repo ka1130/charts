@@ -1,0 +1,14 @@
+.toggle {
+  color: lightcoral;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+}
+
+.content.open {
+  display: block;
+}
